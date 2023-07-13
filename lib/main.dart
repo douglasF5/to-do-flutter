@@ -3,8 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './home_page.dart';
-import './services/auth.dart';
+import 'services/auth.dart';
+import 'screens/home_page.dart';
+import 'screens/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,9 +50,12 @@ class _RootState extends State<Root> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           if (snapshot.data?.uid == null) {
-            return const HomePage(title: 'Flutter Demo Home Page');
+            return Login(
+              auth: _auth,
+              firestore: _firestore,
+            );
           } else {
-            return const HomePage(title: 'Flutter Demo Home Page');
+            return const HomeScreen(title: 'Flutter Demo Home Page');
           }
         } else {
           return const Scaffold(
