@@ -19,10 +19,9 @@ class _DecoratedTextInput extends State<DecoratedTextInput> {
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         boxShadow: _getBoxShadow(fieldIsFocused),
       ),
-      child: FocusScope(
-          child: Focus(
-              onFocusChange: (focus) => setState(() => fieldIsFocused = focus),
-              child: widget.child)),
+      child: Focus(
+          onFocusChange: (focus) => setState(() => fieldIsFocused = focus),
+          child: widget.child),
     );
   }
 
